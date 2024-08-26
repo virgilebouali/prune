@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String   @unique
+  password String
+  prunos   Pruno[]
+  reports  Report[] // Relation inverse avec Report
+}
+
+model Pruno {
+  id             Int      @id @default(autoincrement())
+  title          String
+  content        String?
+  station        String
+  ligne          Int
+  published      Boolean  @default(false)
+  published_date DateTime
+  author         User     @relation(fields: [authorId], references: [id])
+  authorId       Int
+  reportCount    Int      @default(0) 
+
+  reports        Report[] // Relation inverse avec Report
+}
+
+model Report {
+  id        Int      @id @default(autoincrement())
+  pruneId   Int
+  prune     Pruno   @relation(fields: [pruneId], references: [id])
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@unique([pruneId, userId]) // Ensure that each user can only report a Pruno once
+}
+
+model Station {
+  id    Int    @id @default(autoincrement())
+  name  String
+  line  Int
+}
