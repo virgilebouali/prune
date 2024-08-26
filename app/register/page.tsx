@@ -63,7 +63,7 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required  placeholder="  Mot de passe" className="h-12 w-56 ml-10 mt-4 border-gray-800 p-2"/>
 
- <Button variant="outline" className=" bg-purple-500 ml-10 mt-4 border-gray-800 hover:font-bold">S'inscrire</Button>
+ <Button variant="outline" className=" bg-purple-500 ml-10 mt-4 border-gray-800 hover:font-bold">S&apos;inscrire</Button>
  </form>
  </div>
 

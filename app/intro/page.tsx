@@ -21,9 +21,9 @@ const IntroPage = () => {
       <h1 className="text-4xl font-bold mb-8">Bienvenue sur P<span className="text-purple-500">runo</span> </h1>
       <div className="flex-col items-center justify-center flex mx-4">
       <p  className="text-xl mb-6 ">
-        Pruno est une plateforme de partage d'alertes en temps réel pour les voyageurs parisiens. </p>
+        Pruno est une plateforme de partage d&apos;alertes en temps réel pour les voyageurs parisiens. </p>
         <p className="text-md mb-6 text-left"><Cross className="mb-4 text-purple-500"/>Créer des alertes signalant la présence de prunes</p> 
-        <p> <Cross className="mb-4 text-purple-500"/>Signaler l'absence de prune à cet endroit (au bout de 3 signalements, la prune est supprimée). </p>
+        <p> <Cross className="mb-4 text-purple-500"/>Signaler l&apos;absence de prune à cet endroit (au bout de 3 signalements, la prune est supprimée). </p>
      <div className="flex-col flex"> <Button onClick={handleStart} className="bg-purple-500 mb-4 mt-12">
         Commencer
       </Button>

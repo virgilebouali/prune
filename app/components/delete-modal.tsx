@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, onConfirm, title, messag
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-black p-4 rounded-lg shadow-lg max-w-sm w-full">
-        <h2 className="text-lg font-bold text-purple-500">Il y a t'il toujours des prunes ?</h2>
+        <h2 className="text-lg font-bold text-purple-500">Il y a t&apos;il toujours des prunes ?</h2>
         <p className="mt-2">    Merci de bien être sûr, car cela peut impacter les autres utilisateurs.
         Il faut trois votes pour supprimer une prune.
         </p>
