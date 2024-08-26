@@ -8,6 +8,11 @@ const inter = Poppins({
   subsets: ['latin'],
 });
 
+interface LayoutProps {
+  children: React.ReactNode;
+  create?: React.ReactNode; // Optional prop
+}
+
 export const metadata: Metadata = {
   title: "Prune",
   description: "Signalez les prunes en toute simplicité",
