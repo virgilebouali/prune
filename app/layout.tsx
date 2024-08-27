@@ -11,17 +11,13 @@ const inter = Poppins({
   subsets: ['latin'],
 });
 
-interface LayoutProps {
-  children: React.ReactNode;
-  create: React.ReactNode; // Optional prop
-}
 
 export const metadata: Metadata = {
   title: "Prune",
   description: "Signalez les prunes en toute simplicité",
 };
 
-export default function RootLayout({ children, create }: LayoutProps) {
+export default function RootLayout({ children, create }: { children: React.ReactNode; create: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
