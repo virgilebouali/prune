@@ -29,8 +29,9 @@ export default function RootLayout({ children, create }: LayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          {create}
+          {children}   
+
+          {create?.()}  // Use optional chaining to handle undefined create
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
