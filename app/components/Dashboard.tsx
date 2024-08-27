@@ -27,7 +27,7 @@ const Dashboard = () => {
         console.error('Failed to decode token:', error);
       }
     }
-  }, []);
+  }, [username]);
 
 
   return ( 

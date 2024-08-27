@@ -39,7 +39,7 @@ const Nav = () => {
         console.error('Failed to decode token:', error);
       }
     }
-  }, []);
+  }, [username]);
 
   return (
     <header className="w-full border-b-2">

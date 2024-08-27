@@ -31,7 +31,7 @@ export default function RootLayout({ children, create }: LayoutProps) {
         >
           {children}   
 
-          {create?.()}  // Use optional chaining to handle undefined create
+          {create?.()} 
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
