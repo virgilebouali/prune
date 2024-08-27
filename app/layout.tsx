@@ -11,7 +11,7 @@ const inter = Poppins({
 
 interface LayoutProps {
   children: React.ReactNode;
-  create?: React.ReactNode | undefined; // Optional prop
+  create?: React.ReactNode; // ReactNode does not need to be invoked as a function
 }
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({ children, create }: LayoutProps) {
         >
           {children}
 
-          {create?.()}
+          {create /* Directly render the create prop if it's provided */}
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
