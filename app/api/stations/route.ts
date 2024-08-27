@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // Handler for GET requests
 export async function GET() {
   try {
-    const stations = await prisma.station.findMany();
+    const stations = await prisma.station.findMany(); // Assurez-vous que `station` est le bon modèle
     return new Response(JSON.stringify(stations), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
@@ -21,4 +21,3 @@ export async function GET() {
     await prisma.$disconnect();
   }
 }
-
