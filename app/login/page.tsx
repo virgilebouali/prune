@@ -49,7 +49,7 @@ const Login = () => {
   return (
     <section className="justify-center items-center">
       <Nav />
-      <h2 className="text-3xl font-bold tracking-tight ml-10 mt-24">Connexion</h2>
+      <h2 className="text-3xl font-bold tracking-tight ml-10 mt-24">Connexion 👋</h2>
       <div className="items-center mt-12 gap-y-2 justify-center">
         <form onSubmit={handleSubmit}>
           <Input 

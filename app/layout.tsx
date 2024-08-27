@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";   
 
 import { Toaster } from "@/src/@/components/ui/sonner";
+import ModalCard from "./components/create-modal";
 
 const inter = Poppins({
   weight: '400',
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   description: "Signalez les prunes en toute simplicité",
 };
 
-export default function RootLayout({ children, create }: { children: React.ReactNode; create: React.ReactNode }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -28,7 +29,7 @@ export default function RootLayout({ children, create }: { children: React.React
           disableTransitionOnChange   
 
         >
-          <main>{children}</main> {create}
+          <main>{children}</main>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
