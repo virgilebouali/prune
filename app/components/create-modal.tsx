@@ -17,33 +17,52 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/src/@/components/ui/select";
-import { Input } from "@/src/@/components/ui/input"; // Assurez-vous que ce composant existe
+import { Input } from "@/src/@/components/ui/input"; // Ensure this component exists
 import { toast } from "sonner";
 import { useRouter } from 'next/navigation';
 
-const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
-  const [stations, setStations] = useState([]);
-  const [filteredStations, setFilteredStations] = useState([]);
-  const [selectedStation, setSelectedStation] = useState("");
-  const [filterText, setFilterText] = useState("");
+interface ModalCardProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSubmit: () => void;
+}
+
+interface Station {
+  id: number; // or `string`, depending on your actual type
+  name: string;
+}
+
+const ModalCard: React.FC<ModalCardProps> = ({ isOpen, onClose, onSubmit }) => {
+  const [stations, setStations] = useState<Station[]>([]);
+  const [filteredStations, setFilteredStations] = useState<Station[]>([]);
+  const [selectedStation, setSelectedStation] = useState<string>("");
+  const [filterText, setFilterText] = useState<string>("");
   const router = useRouter();
 
   useEffect(() => {
     const fetchStations = async () => {
-      const response = await fetch("/api/stations");
-      const data = await response.json();
-      setStations(data);
-      setFilteredStations(data); // Initialise filteredStations avec toutes les stations
+      try {
+        const response = await fetch("/api/stations");
+        if (!response.ok) {
+          throw new Error("Failed to fetch stations");
+        }
+        const data: Station[] = await response.json();
+        setStations(data);
+        setFilteredStations(data); // Initialize filteredStations with all stations
+      } catch (error) {
+        toast.error(`Error fetching stations: ${(error as Error).message}`);
+      }
     };
 
     fetchStations();
   }, []);
 
   useEffect(() => {
-    // Filtrer les stations en fonction du texte d'entrée
-    const filtered = stations.filter((station) =>
+    // Filter stations based on the input text
+    const filtered = stations.filter(station =>
       station.name.toLowerCase().includes(filterText.toLowerCase())
     );
+    
     setFilteredStations(filtered);
   }, [filterText, stations]);
 
@@ -52,10 +71,10 @@ const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    // Vérifier si une station est sélectionnée
+    // Check if a station is selected
     if (!selectedStation) {
       toast.error("Veuillez sélectionner une station");
-      return; // Empêche la soumission du formulaire
+      return; // Prevent form submission
     }
 
     const lastCreationTime = localStorage.getItem("lastCreationTime");
@@ -63,7 +82,7 @@ const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
 
     if (lastCreationTime && currentTime - parseInt(lastCreationTime) < 15 * 60 * 1000) {
       toast.error("Vous devez attendre 15 minutes avant de créer une nouvelle prune.");
-      return; // Empêche la création de prune
+      return; // Prevent prune creation
     }
 
     try {
@@ -86,23 +105,21 @@ const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
         const data = await res.json();
         localStorage.setItem("lastCreationTime", currentTime.toString());
         toast.success("Pruno créé avec succès!");
-        setSelectedStation(""); // Réinitialise la station sélectionnée
-        onClose(); // Ferme le formulaire ou la modal
+        setSelectedStation(""); // Reset selected station
+        onClose(); // Close the modal
         setTimeout(() => {
-          window.location.reload();
-          router.push('/');
+          router.push('/'); // Redirect to home page
         }, 2000);
       } else {
-        // Gérer les différents types d'erreurs en fonction de la réponse
         toast.error("Vous devez être connecté pour créer une prune et choisir une station.");
       }
     } catch (error) {
-      toast.error(`Erreur lors de la création de la prune: ${error.message}`);
+      toast.error(`Erreur lors de la création de la prune: ${(error as Error).message}`);
     }
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 shadow-2xl ">
+    <div className="fixed inset-0 flex items-center justify-center z-50 shadow-2xl">
       <Card className="relative w-[400px] h-[350px] rounded-lg shadow-lg p-4 gap-y-2 bg-black text-white">
         <CardHeader>
           <CardTitle>Créer une prune</CardTitle>
@@ -131,13 +148,13 @@ const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
               </div>
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="station">Station</Label>
-                <Select className="bg-black gap-4" onValueChange={(value) => setSelectedStation(value)}>
+                <Select onValueChange={(value) => setSelectedStation(value)}>
                   <SelectTrigger id="station" className="p-2">
                     <SelectValue placeholder="Choisir une station" />
                   </SelectTrigger>
                   <SelectContent position="popper" className="bg-black p-4 w-full h-96 text-white">
                     {filteredStations.map((station) => (
-                      <SelectItem key={station.id} value={station.name} className="p-4 ml-4" required>
+                      <SelectItem key={station.id} value={station.name} className="p-4 ml-4">
                         {station.name}
                       </SelectItem>
                     ))}
@@ -145,14 +162,14 @@ const ModalCard = ({ isOpen, onClose = [], onSubmit }) => {
                 </Select>
               </div>
             </div>
+            <CardFooter className="flex justify-between mt-4">
+              <Button variant="outline" onClick={onClose} className="bg-red-500">
+                Annuler
+              </Button>
+              <Button type="submit" className="bg-purple-500">Poster</Button>
+            </CardFooter>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-between mt-4">
-          <Button variant="outline" onClick={onClose} className="bg-red-500">
-            Annuler
-          </Button>
-          <Button onClick={handleSubmit} className="bg-purple-500">Poster</Button>
-        </CardFooter>
       </Card>
     </div>
   );

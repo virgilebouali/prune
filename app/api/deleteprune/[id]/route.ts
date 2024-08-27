@@ -33,7 +33,6 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     return NextResponse.json({ error: 'Token invalide' }, { status: 401 });
   }
 
-  const userId = decoded.id;
 
   try {
     // Vérifier si le prune a suffisamment de signalements
@@ -47,7 +46,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
       return NextResponse.json({ message: 'Le prune ne peut pas être supprimé. Pas assez de signalements.' }, { status: 403 });
     }
   } catch (error) {
-    console.error('Erreur lors de la suppression du prune:', error); // Log l'erreur pour le débogage
-    return NextResponse.json({ message: error.message || 'Erreur lors de la suppression du prune' }, { status: 500 });
+    console.error('Erreur lors de la suppression du prune:', error as Error); // Log l'erreur pour le débogage
+    return NextResponse.json({ message: (error as Error).message || 'Erreur lors de la suppression du prune' }, { status: 500 });
   }
 }

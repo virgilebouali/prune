@@ -25,8 +25,8 @@ export function ComboboxDemo() {
         }
         setLoading(false)
         setStations(await res.json())
-      } catch (error) {
-        setError(error.message)
+      } catch (error: any) {
+        setError(error.message as string)
         setLoading(false)
       }
     }

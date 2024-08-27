@@ -19,7 +19,7 @@ import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 const Nav = () => {
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter()
 
@@ -30,7 +30,7 @@ const Nav = () => {
     console.log(token)
     if (token) {
       try {
-        const decoded = jwtDecode(token);
+        const decoded: { username: string } = jwtDecode(token);
         console.log(decoded);
         setUsername(decoded.username);
         console.log(username)
@@ -53,7 +53,7 @@ const Nav = () => {
         Créer
       </button>
 
-      <ModalCard isOpen={isModalOpen} onClose={closeModal} />
+      <ModalCard isOpen={isModalOpen} onClose={closeModal} onSubmit={() => {}} />
     </div>
 
 <DropdownMenu>

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { toast } from 'sonner';
 import { PrismaClient } from '@prisma/client';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
@@ -15,11 +15,11 @@ export async function POST(req: Request) {
     }
 
     // Vérification du token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as JwtPayload;
     if (!decoded) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
     }
-
+    
     const userId = decoded.id;
 
     

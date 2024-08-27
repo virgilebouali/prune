@@ -11,10 +11,10 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState<string | null>('');
   const router = useRouter()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     
     try {
@@ -28,21 +28,20 @@ const Login = () => {
 
       if (res.ok) {
         const data = await res.json();
-        setMessage('Connexion réussie!')
+        setMessage(''); // Pass an empty string as the argument
         toast.success("Connexion réussie!")
         router.push('/')
 ; // or "Connexion réus sie!"
         // Optionally, save the token to localStorage or handle it as needed
         localStorage.setItem('token', data.token);
-        navigate
         setUsername('');
         setPassword('');
       } else {
         const errorText = await res.text();
-        setError(errorText);
+        setError(null);
       }
     } catch (error) {
-      setError('An error occurred. Please try again.');
+      setError(null);
     }
   };
 

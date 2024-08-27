@@ -13,7 +13,9 @@ const CreatePrunoModal = () => {
   return (
     <>
       <Button onClick={openModal}>Create Pruno</Button>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
+      <Modal isOpen={isModalOpen} onClose={closeModal} onSubmit={function (): void {
+        throw new Error("Function not implemented.");
+      } }>
       </Modal>
     </>
   );

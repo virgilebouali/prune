@@ -18,7 +18,7 @@ const Dashboard = () => {
     console.log(token)
     if (token) {
       try {
-        const decoded = jwtDecode(token);
+        const decoded: any = jwtDecode(token);
         console.log("test:" + decoded);
         setUsername(decoded.username);
         console.log(username)

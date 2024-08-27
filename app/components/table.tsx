@@ -17,7 +17,12 @@ import { Flag, Cross } from "lucide-react";
 import { useRouter } from 'next/navigation'
 
 export function TableDemo() {
-  const [prunes, setPrunes] = React.useState([]);
+  const [prunes, setPrunes] = React.useState<{
+    published_date: string;
+    station: React.ReactNode;
+    reportCount: number;
+    ligne: React.ReactNode; id: number 
+}[]>([]);
   const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
@@ -104,7 +109,7 @@ export function TableDemo() {
         const data = await res.json();
         toast.error(data.message || "Erreur lors du rapport de la prune.");
       }
-    } catch (error) {
+    } catch (error:any) {
       toast.error(`Erreur lors du rapport de la prune: ${error.message}`);
     } finally {
       closeDeleteModal();
@@ -114,7 +119,7 @@ export function TableDemo() {
     const now = new Date();
     const publishedTime = new Date(publishedDate);
     const diffInMinutes = Math.floor((now.getTime() - publishedTime.getTime()) / (1000 * 60));
-
+  
     if (diffInMinutes < 60) {
       return `Il y a ${diffInMinutes} minute${diffInMinutes > 1 ? 's' : ''}`;
     } else if (diffInMinutes < 1440) { // Less than a day

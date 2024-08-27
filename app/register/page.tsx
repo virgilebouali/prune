@@ -11,11 +11,11 @@ import { useRouter } from 'next/navigation';
 const Register = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [message, setMessage] = useState(null);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const router = useRouter()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void; }) => {
 
     event.preventDefault();
 
@@ -29,7 +29,7 @@ const Register = () => {
       });
 
       if (res.ok) {
-        setMessage('User registered successfully!');
+        setMessage('');
         toast.success("Inscription réussie!")
         setUsername('');
         setPassword('');

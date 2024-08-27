@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const pruno = await prisma.report.findMany();
-    return new Response(JSON.stringify(reports), {
+    return new Response(JSON.stringify(Report), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
