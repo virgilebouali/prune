@@ -1,7 +1,9 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "./components/theme-provider";
+import { ThemeProvider } from "./components/theme-provider";   
+
 import { Toaster } from "@/src/@/components/ui/sonner";
 
 const inter = Poppins({
@@ -11,7 +13,7 @@ const inter = Poppins({
 
 interface LayoutProps {
   children: React.ReactNode;
-  create?: React.ReactNode; // ReactNode does not need to be invoked as a function
+  create?: React.ReactNode | any; // Optional prop
 }
 
 export const metadata: Metadata = {
@@ -27,11 +29,10 @@ export default function RootLayout({ children, create }: LayoutProps) {
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
-        >
-          {children}
+          disableTransitionOnChange   
 
-          {create /* Directly render the create prop if it's provided */}
+        >
+          <main>{children}</main> {create?.()}
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
