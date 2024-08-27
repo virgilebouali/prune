@@ -2,11 +2,12 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-
-const prisma = new PrismaClient();
+import { config } from 'dotenv';
 
 // Load environment variables
-require('dotenv').config();
+config();
+
+const prisma = new PrismaClient();
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
 
 // Handler for POST requests
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
 
     if (!user) {
       return new Response(
-        JSON.stringify("Nom d'utilisateur ou mot de passe incorrect."),
+        JSON.stringify({ error: "Nom d'utilisateur ou mot de passe incorrect." }),
         { status: 401, headers: { 'Content-Type': 'application/json' } }
       );
     }

@@ -1,4 +1,4 @@
-// app/api/stations/route.ts
+// app/api/reports/route.ts
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // Handler for GET requests
 export async function GET() {
   try {
-    const pruno = await prisma.report.findMany();
+    const reports = await prisma.report.findMany();
     return new Response(JSON.stringify(Report), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
