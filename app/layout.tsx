@@ -11,7 +11,7 @@ const inter = Poppins({
 
 interface LayoutProps {
   children: React.ReactNode;
-  create?: React.ReactNode; // Optional prop
+  create?: React.ReactNode | undefined; // Optional prop
 }
 
 export const metadata: Metadata = {
@@ -29,9 +29,9 @@ export default function RootLayout({ children, create }: LayoutProps) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}   
+          {children}
 
-          {create?.()} 
+          {create?.()}
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
