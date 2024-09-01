@@ -6,6 +6,8 @@ import { ThemeProvider } from "./components/theme-provider";  
 
 import { Toaster } from "@/src/@/components/ui/sonner";
 import ModalCard from "./components/create-modal";
+import Footer from "./components/Footer";
+import Nav from "./components/Nav";
 
 const inter = Poppins({
   weight: '400',
@@ -29,7 +31,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange   
 
         >
-          <main className="md:mx-56 mx-4">{children}</main>
+          <main className="md:mx-56 mx-4">
+            <Nav/>
+            {children}
+            <Footer/>
+          </main>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>
