@@ -139,7 +139,7 @@ export function TableDemo() {
 
   return (
     <>
-      <Table className="max-w-screen">
+      <Table className="max-w-screen ">
         <TableCaption className="text-2xl font-bold">Liste des Prunes</TableCaption>
 
         <TableHeader>
@@ -160,7 +160,7 @@ export function TableDemo() {
                 </Button>
               </TableCell>
               <TableCell className="text-purple-500 font-bold text-md">{prune.station}</TableCell>
-              <TableCell className="text-center font-bold w-[10]">
+              <TableCell className="text-right font-bold w-[10]">
                 {formatTimeAgo(prune.published_date)}
               </TableCell>
             </TableRow>

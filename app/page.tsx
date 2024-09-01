@@ -17,12 +17,12 @@ export default function Home() {
     }
   }, [router]);
   return (
-    <main className="max-w-screen max-h-screen">
-    <Nav/>  
-    <section className="mt-16">
-    <Dashboard />
+    <main className="max-w-screen max-h-screen flex flex-col">
+    <Nav />
+    <section className="mt-16 flex-grow">
+      <Dashboard />
     </section>
-    <Footer/>
-    </main>
+    <Footer />
+  </main>
   );
 }

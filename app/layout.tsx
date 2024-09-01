@@ -29,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange   
 
         >
-          <main>{children}</main>
+          <main className="md:mx-56 mx-4">{children}</main>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
       </body>

@@ -55,7 +55,7 @@ const Login = () => {
             id="username"
             type="text"
             placeholder="Nom d'utilisateur"
-            className="h-12 w-56 ml-10 border-gray-800 p-2"
+            className="h-12 w-56 ml-10 border-gray-800 p-2 items-center justify-center text-center"
             onChange={(e) => setUsername(e.target.value)}
             required
             value={username}
@@ -64,7 +64,7 @@ const Login = () => {
             type="password"
             id="password"
             placeholder="Mot de passe"
-            className="h-12 w-56 ml-10 mt-4 border-gray-800 p-2"
+            className="h-12 w-56 ml-10 mt-4 border-gray-800 p-2 items-center justify-center text-center"
             onChange={(e) => setPassword(e.target.value)}
             required
             value={password}

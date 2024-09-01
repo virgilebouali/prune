@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
   } from "../../@/components/ui/dropdown-menu"
 import { ModeToggle } from './dark-mode-toggle'
-import { User, UserIcon, TrainFront, MenuIcon } from 'lucide-react'
+import { User, UserIcon, TrainFront, MenuIcon, GrapeIcon } from 'lucide-react'
 import { Searchbar } from './searchbar'
 import { Button } from '@/src/@/components/ui/button'
 import { jwtDecode } from "jwt-decode";
@@ -45,6 +45,7 @@ const Nav = () => {
     <header className="w-full border-b-2">
         <nav className="flex h-16 items-center justify-evenly max-w-screen">
             <div className="flex">
+              <GrapeIcon className="text-2xl mr-4"/>
         <Link href="/"><h1 className="text-4xl font-bold"><span className="text-purple-500">Prune</span></h1></Link>
         </div>
 

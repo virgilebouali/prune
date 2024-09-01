@@ -47,27 +47,29 @@ const Register = () => {
 
 
   return (
-    <section className="justify-center items-center">
+    <>
+    <section className="">
       <Nav />
       <h2 className="text-3xl font-bold tracking-tight ml-10 mt-24">Inscription 👋</h2>
-<div className="items-center mt-12 gap-y-2 justify-center">
-  <form onSubmit={handleSubmit}>
+<div className="mt-12 gap-y-2">
+  <form onSubmit={handleSubmit} className="">
  <Input  id="username"  onChange={(e) => setUsername(e.target.value)}
             required value={username}
- type="text" placeholder="  Nom d'utilisateur" className="h-12 w-56 ml-10 border-gray-800 p-2"/>
+ type="text" placeholder="  Nom d'utilisateur" className="h-12 w-56 ml-10 border-gray-800 p-2 items-center justify-center text-center"/>
 
  <Input type="password"
             id="password"
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required  placeholder="  Mot de passe" className="h-12 w-56 ml-10 mt-4 border-gray-800 p-2"/>
+            required  placeholder="  Mot de passe" className="h-12 w-56 ml-10 mt-4 border-gray-800 p-2 items-center justify-center text-center"/>
 
  <Button variant="outline" className=" bg-purple-500 ml-10 mt-4 border-gray-800 hover:font-bold">S&apos;inscrire</Button>
  </form>
  </div>
 
     </section>
+    </>
   )
 }
 
