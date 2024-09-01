@@ -38,6 +38,7 @@ const Login = () => {
         setPassword('');
       } else {
         const errorText = await res.text();
+        toast.error("Identifiants incorrects ou nom d'utilisateur déjà utilisé")
         setError(null);
       }
     } catch (error) {
@@ -46,8 +47,7 @@ const Login = () => {
   };
 
   return (
-    <section className="justify-center items-center">
-      <Nav />
+    <section className="justify-center items-center h-screen">
       <h2 className="text-3xl font-bold tracking-tight ml-10 mt-24">Connexion 👋</h2>
       <div className="items-center mt-12 gap-y-2 justify-center">
         <form onSubmit={handleSubmit}>
