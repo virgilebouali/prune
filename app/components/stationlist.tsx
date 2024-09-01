@@ -36,7 +36,7 @@ export function ComboboxDemo() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center text-center text-purple-500 flex-col">
+      <div className=" items-center justify-center text-center text-purple-500 flex-col flex">
         <div className="animate-spin"></div>
         <p className="mt-2 animate-bounce"><Cross/></p>
       </div>

@@ -18,7 +18,7 @@ const IntroPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4   ">
-      <h1 className="text-4xl font-bold mb-8">Bienvenue sur P<span className="text-purple-500">runo</span> </h1>
+      <h1 className="text-4xl font-bold mb-8">Bienvenue sur P<span className="text-purple-500">rune</span> </h1>
       <div className="flex-col items-center justify-center flex mx-4">
       <p  className="text-xl mb-6 ">
         Pruno est une plateforme de partage d&apos;alertes en temps réel pour les voyageurs parisiens. </p>

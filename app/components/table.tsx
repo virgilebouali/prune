@@ -147,7 +147,7 @@ export function TableDemo() {
             <TableHead className="w-[10px] font-bold">Ligne</TableHead>
             <TableHead className="w-[50px] font-bold">Status</TableHead>
             <TableHead className="w-[100px] font-bold">Station</TableHead>
-            <TableHead className="text-right font-bold">Date & Heure</TableHead>
+            <TableHead className="text-right font-bold">Temps</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -158,9 +158,6 @@ export function TableDemo() {
                 <Button className="border-2 border-green-300" onClick={() => openDeleteModal(prune.id)}>
                   Signaler
                 </Button>
-                {Array.from({ length: prune.reportCount }).map((_, index) => (
-                  <Flag key={index} className="text-red-500 inline-block mr-1 mt-2" />
-                ))}
               </TableCell>
               <TableCell className="text-purple-500 font-bold text-md">{prune.station}</TableCell>
               <TableCell className="text-center font-bold w-[10]">
